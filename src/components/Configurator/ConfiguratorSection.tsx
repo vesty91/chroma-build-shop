@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { ChevronRight, ChevronLeft, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const ConfiguratorSection = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -33,12 +34,12 @@ const ConfiguratorSection = () => {
 
   const components = {
     cpu: [
-      { id: 1, name: 'AMD Ryzen 5 5600', price: 159, socket: 'AM4', brand: 'AMD', power: 65 },
-      { id: 2, name: 'AMD Ryzen 7 5700X', price: 229, socket: 'AM4', brand: 'AMD', power: 105 },
-      { id: 3, name: 'Intel Core i5-12400F', price: 189, socket: 'LGA1700', brand: 'Intel', power: 65 },
-      { id: 4, name: 'Intel Core i7-12700K', price: 329, socket: 'LGA1700', brand: 'Intel', power: 125 },
-      { id: 5, name: 'AMD Ryzen 9 5900X', price: 399, socket: 'AM4', brand: 'AMD', power: 105 },
-      { id: 6, name: 'Intel Core i9-12900K', price: 589, socket: 'LGA1700', brand: 'Intel', power: 125 }
+      { id: 1, name: 'AMD Ryzen 5 5600', price: 159, socket: 'AM4', brand: 'AMD', power: 65, usage: ['Gaming', 'Bureautique'] },
+      { id: 2, name: 'AMD Ryzen 7 5700X', price: 229, socket: 'AM4', brand: 'AMD', power: 105, usage: ['Gaming', '3D', 'Streaming'] },
+      { id: 3, name: 'Intel Core i5-12400F', price: 189, socket: 'LGA1700', brand: 'Intel', power: 65, usage: ['Gaming', 'Bureautique'] },
+      { id: 4, name: 'Intel Core i7-12700K', price: 329, socket: 'LGA1700', brand: 'Intel', power: 125, usage: ['Gaming', '3D', 'Streaming'] },
+      { id: 5, name: 'AMD Ryzen 9 5900X', price: 399, socket: 'AM4', brand: 'AMD', power: 105, usage: ['Gaming Pro', '3D', 'Streaming'] },
+      { id: 6, name: 'Intel Core i9-12900K', price: 589, socket: 'LGA1700', brand: 'Intel', power: 125, usage: ['Gaming Pro', '3D', 'Streaming'] }
     ],
     motherboard: [
       { id: 1, name: 'MSI B450 TOMAHAWK MAX', price: 89, socket: 'AM4', ramSlots: 4, maxRam: 128 },
@@ -182,6 +183,17 @@ const ConfiguratorSection = () => {
 
   const currentStepKey = steps[currentStep].key;
   const compatibilityIssues = checkCompatibility();
+
+  const getUsageBadgeColor = (usage) => {
+    switch (usage) {
+      case 'Gaming': return 'bg-gaming-cyan text-gaming-dark';
+      case 'Gaming Pro': return 'bg-gaming-purple text-white';
+      case '3D': return 'bg-gaming-green text-gaming-dark';
+      case 'Streaming': return 'bg-gaming-orange text-white';
+      case 'Bureautique': return 'bg-blue-500 text-white';
+      default: return 'bg-gray-500 text-white';
+    }
+  };
 
   return (
     <section id="configurator" className="py-20 bg-gaming-dark">
@@ -357,14 +369,21 @@ const ConfiguratorSection = () => {
                                 <span className="text-gaming-cyan font-bold">{component.price}€</span>
                               </div>
                               
-                              <div className="space-y-1 text-sm text-gray-400">
+                              <div className="space-y-2 text-sm text-gray-400">
                                 {currentStepKey === 'cpu' && (
                                   <>
                                     <div>Socket: {component.socket}</div>
                                     <div>Consommation: {component.power}W</div>
-                                    <Badge variant="outline" className={component.brand === 'AMD' ? 'border-red-500 text-red-500' : 'border-blue-500 text-blue-500'}>
-                                      {component.brand}
-                                    </Badge>
+                                    <div className="flex flex-wrap gap-2 mt-2">
+                                      <Badge variant="outline" className={component.brand === 'AMD' ? 'border-red-500 text-red-500' : 'border-blue-500 text-blue-500'}>
+                                        {component.brand}
+                                      </Badge>
+                                      {component.usage.map((use, index) => (
+                                        <Badge key={index} className={getUsageBadgeColor(use)}>
+                                          {use}
+                                        </Badge>
+                                      ))}
+                                    </div>
                                   </>
                                 )}
                                 {currentStepKey === 'motherboard' && (
