@@ -6,7 +6,6 @@ import HeroSection from '@/components/Home/HeroSection';
 import FeaturesSection from '@/components/Home/FeaturesSection';
 import PrebuiltSection from '@/components/PrebuiltPCs/PrebuiltSection';
 import TestimonialsSection from '@/components/Home/TestimonialsSection';
-import ConfiguratorSection from '@/components/Configurator/ConfiguratorSection';
 import CTASection from '@/components/Home/CTASection';
 
 const Index = () => {
@@ -18,7 +17,6 @@ const Index = () => {
         <FeaturesSection />
         <PrebuiltSection />
         <TestimonialsSection />
-        <ConfiguratorSection />
         <CTASection />
       </main>
       <Footer />
