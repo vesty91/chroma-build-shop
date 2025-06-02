@@ -3,8 +3,11 @@ import React from 'react';
 import Header from '@/components/Layout/Header';
 import Footer from '@/components/Layout/Footer';
 import HeroSection from '@/components/Home/HeroSection';
+import FeaturesSection from '@/components/Home/FeaturesSection';
 import PrebuiltSection from '@/components/PrebuiltPCs/PrebuiltSection';
+import TestimonialsSection from '@/components/Home/TestimonialsSection';
 import ConfiguratorSection from '@/components/Configurator/ConfiguratorSection';
+import CTASection from '@/components/Home/CTASection';
 
 const Index = () => {
   return (
@@ -12,8 +15,11 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
+        <FeaturesSection />
         <PrebuiltSection />
+        <TestimonialsSection />
         <ConfiguratorSection />
+        <CTASection />
       </main>
       <Footer />
     </div>
