@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -19,20 +20,20 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-4">Produits</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#prebuilt" className="hover:text-gaming-cyan transition-colors">PC Préconfigurés</a></li>
-              <li><a href="#configurator" className="hover:text-gaming-cyan transition-colors">Configurateur</a></li>
-              <li><a href="#components" className="hover:text-gaming-cyan transition-colors">Composants</a></li>
-              <li><a href="#services" className="hover:text-gaming-cyan transition-colors">Services</a></li>
+              <li><Link to="/prebuilt" className="hover:text-gaming-cyan transition-colors">PC Préconfigurés</Link></li>
+              <li><Link to="/configurator" className="hover:text-gaming-cyan transition-colors">Configurateur</Link></li>
+              <li><Link to="/components" className="hover:text-gaming-cyan transition-colors">Composants</Link></li>
+              <li><Link to="/services" className="hover:text-gaming-cyan transition-colors">Services</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="text-white font-semibold mb-4">Support</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#tracking" className="hover:text-gaming-cyan transition-colors">Suivi de commande</a></li>
+              <li><Link to="/tracking" className="hover:text-gaming-cyan transition-colors">Suivi de commande</Link></li>
               <li><a href="#" className="hover:text-gaming-cyan transition-colors">Garantie</a></li>
               <li><a href="#" className="hover:text-gaming-cyan transition-colors">SAV</a></li>
-              <li><a href="#contact" className="hover:text-gaming-cyan transition-colors">Contact</a></li>
+              <li><Link to="/contact" className="hover:text-gaming-cyan transition-colors">Contact</Link></li>
             </ul>
           </div>
           

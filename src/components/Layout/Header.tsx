@@ -3,19 +3,20 @@ import React, { useState } from 'react';
 import { Search, ShoppingCart, User, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cartItems, setCartItems] = useState(0);
 
   const navigation = [
-    { name: 'Accueil', href: '#home' },
-    { name: 'PC Préconfigurés', href: '#prebuilt' },
-    { name: 'Configurateur', href: '#configurator' },
-    { name: 'Composants', href: '#components' },
-    { name: 'Services', href: '#services' },
-    { name: 'Suivi', href: '#tracking' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Accueil', href: '/' },
+    { name: 'PC Préconfigurés', href: '/prebuilt' },
+    { name: 'Configurateur', href: '/configurator' },
+    { name: 'Composants', href: '/components' },
+    { name: 'Services', href: '/services' },
+    { name: 'Suivi', href: '/tracking' },
+    { name: 'Contact', href: '/contact' }
   ];
 
   return (
@@ -24,21 +25,23 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold bg-neon-gradient bg-clip-text text-transparent">
-              GamerPC.fr
-            </h1>
+            <Link to="/">
+              <h1 className="text-2xl font-bold bg-neon-gradient bg-clip-text text-transparent">
+                GamerPC.fr
+              </h1>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="text-gray-300 hover:text-gaming-cyan transition-colors duration-200 font-medium"
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -85,14 +88,14 @@ const Header = () => {
           <div className="md:hidden py-4 border-t border-gaming-gray animate-fade-in">
             <nav className="flex flex-col space-y-4">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="text-gray-300 hover:text-gaming-cyan transition-colors duration-200 font-medium px-2 py-1"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
               <div className="flex items-center space-x-4 px-2 pt-4 border-t border-gaming-gray">
                 <Button variant="ghost" size="icon" className="relative text-gray-300 hover:text-gaming-cyan">

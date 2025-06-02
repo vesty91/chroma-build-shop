@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
@@ -29,21 +30,23 @@ const HeroSection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button
-              size="lg"
-              className="gaming-button text-lg px-8 py-4"
-              onClick={() => document.getElementById('configurator')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              Configurateur PC
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-gaming-cyan text-gaming-cyan hover:bg-gaming-cyan hover:text-gaming-dark text-lg px-8 py-4"
-              onClick={() => document.getElementById('prebuilt')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              PC Préconfigurés
-            </Button>
+            <Link to="/configurator">
+              <Button
+                size="lg"
+                className="gaming-button text-lg px-8 py-4"
+              >
+                Configurateur PC
+              </Button>
+            </Link>
+            <Link to="/prebuilt">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-gaming-cyan text-gaming-cyan hover:bg-gaming-cyan hover:text-gaming-dark text-lg px-8 py-4"
+              >
+                PC Préconfigurés
+              </Button>
+            </Link>
           </div>
 
           {/* Stats */}
