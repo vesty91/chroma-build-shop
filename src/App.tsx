@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import PrebuiltPCs from "./pages/PrebuiltPCs";
+import PrebuiltPCDetail from "./pages/PrebuiltPCDetail";
 import Configurator from "./pages/Configurator";
 import Components from "./pages/Components";
 import Services from "./pages/Services";
@@ -24,6 +24,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/prebuilt" element={<PrebuiltPCs />} />
+          <Route path="/prebuilt/:id" element={<PrebuiltPCDetail />} />
           <Route path="/configurator" element={<Configurator />} />
           <Route path="/components" element={<Components />} />
           <Route path="/services" element={<Services />} />

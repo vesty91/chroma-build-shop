@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Link } from 'react-router-dom';
 
 const PrebuiltSection = () => {
   const [selectedBudget, setSelectedBudget] = useState('all');
@@ -11,7 +11,7 @@ const PrebuiltSection = () => {
 
   const prebuiltPCs = [
     {
-      id: 1,
+      id: 'gaming-starter',
       name: "Gaming Starter",
       price: 799,
       originalPrice: 899,
@@ -31,7 +31,7 @@ const PrebuiltSection = () => {
       usage: "gaming"
     },
     {
-      id: 2,
+      id: 'performance-pro',
       name: "Performance Pro",
       price: 1299,
       originalPrice: 1499,
@@ -51,7 +51,7 @@ const PrebuiltSection = () => {
       usage: "gaming"
     },
     {
-      id: 3,
+      id: 'creator-beast',
       name: "Creator Beast",
       price: 2199,
       originalPrice: 2399,
@@ -71,7 +71,7 @@ const PrebuiltSection = () => {
       usage: "creation"
     },
     {
-      id: 4,
+      id: 'ultimate-4k',
       name: "Ultimate 4K",
       price: 3499,
       originalPrice: 3799,
@@ -91,7 +91,7 @@ const PrebuiltSection = () => {
       usage: "gaming"
     },
     {
-      id: 5,
+      id: 'workstation-pro',
       name: "Workstation Pro",
       price: 2899,
       originalPrice: 3199,
@@ -111,7 +111,7 @@ const PrebuiltSection = () => {
       usage: "creation"
     },
     {
-      id: 6,
+      id: 'compact-gaming',
       name: "Compact Gaming",
       price: 1099,
       originalPrice: 1299,
@@ -263,9 +263,11 @@ const PrebuiltSection = () => {
                     <Button className="gaming-button w-full">
                       Ajouter au panier
                     </Button>
-                    <Button variant="outline" className="w-full border-gaming-cyan text-gaming-cyan hover:bg-gaming-cyan hover:text-gaming-dark">
-                      Voir détails
-                    </Button>
+                    <Link to={`/prebuilt/${pc.id}`}>
+                      <Button variant="outline" className="w-full border-gaming-cyan text-gaming-cyan hover:bg-gaming-cyan hover:text-gaming-dark">
+                        Voir détails
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </CardContent>
@@ -273,7 +275,7 @@ const PrebuiltSection = () => {
           ))}
         </div>
 
-        {filteredPCs.length === 0 && (
+        {filteredPCs.length ===   0 && (
           <div className="text-center py-12">
             <p className="text-gray-400 text-lg">Aucun PC ne correspond à vos critères.</p>
           </div>
