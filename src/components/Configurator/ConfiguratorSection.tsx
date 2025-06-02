@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -8,6 +7,7 @@ import { ChevronRight, ChevronLeft, AlertTriangle, CheckCircle } from 'lucide-re
 
 const ConfiguratorSection = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [cpuFilter, setCpuFilter] = useState('all'); // 'all', 'intel', 'amd'
   const [selectedComponents, setSelectedComponents] = useState({
     cpu: null,
     motherboard: null,
@@ -124,17 +124,26 @@ const ConfiguratorSection = () => {
   };
 
   const getFilteredComponents = (type) => {
+    let filteredComponents = components[type] || [];
+    
+    // Appliquer le filtre CPU par marque
+    if (type === 'cpu' && cpuFilter !== 'all') {
+      filteredComponents = filteredComponents.filter(cpu => 
+        cpu.brand.toLowerCase() === cpuFilter.toLowerCase()
+      );
+    }
+    
     if (type === 'motherboard' && selectedComponents.cpu) {
       const cpu = components.cpu.find(c => c.id === selectedComponents.cpu);
-      return components.motherboard.filter(mb => mb.socket === cpu.socket);
+      return filteredComponents.filter(mb => mb.socket === cpu.socket);
     }
     if (type === 'psu' && selectedComponents.gpu) {
       const gpu = components.gpu.find(g => g.id === selectedComponents.gpu);
       const cpu = selectedComponents.cpu ? components.cpu.find(c => c.id === selectedComponents.cpu) : null;
       const minWattage = (cpu?.power || 65) + gpu.power + 150;
-      return components.psu.filter(psu => psu.wattage >= minWattage);
+      return filteredComponents.filter(psu => psu.wattage >= minWattage);
     }
-    return components[type] || [];
+    return filteredComponents;
   };
 
   const selectComponent = (type, componentId) => {
@@ -223,6 +232,36 @@ const ConfiguratorSection = () => {
                   <CardDescription className="text-gray-300">
                     {currentStepKey === 'summary' ? 'Vérifiez votre configuration avant de commander' : 'Sélectionnez un composant pour continuer'}
                   </CardDescription>
+                  
+                  {/* Filtres pour CPU */}
+                  {currentStepKey === 'cpu' && (
+                    <div className="flex gap-2 mt-4">
+                      <Button
+                        variant={cpuFilter === 'all' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setCpuFilter('all')}
+                        className={cpuFilter === 'all' ? 'gaming-button' : 'border-gaming-cyan text-gaming-cyan hover:bg-gaming-cyan hover:text-gaming-dark'}
+                      >
+                        Tous
+                      </Button>
+                      <Button
+                        variant={cpuFilter === 'intel' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setCpuFilter('intel')}
+                        className={cpuFilter === 'intel' ? 'gaming-button' : 'border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white'}
+                      >
+                        Intel
+                      </Button>
+                      <Button
+                        variant={cpuFilter === 'amd' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setCpuFilter('amd')}
+                        className={cpuFilter === 'amd' ? 'gaming-button' : 'border-red-500 text-red-500 hover:bg-red-500 hover:text-white'}
+                      >
+                        AMD
+                      </Button>
+                    </div>
+                  )}
                 </CardHeader>
                 <CardContent>
                   {currentStepKey === 'summary' ? (
