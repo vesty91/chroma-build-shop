@@ -6,18 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from '@/components/ui/card';
-import { 
-  ChevronRight, 
-  Cpu, 
-  Gpu, 
-  Memory, 
-  HardDrive, 
-  Power, 
-  Box, 
-  Check,
-  Star,
-  Zap
-} from 'lucide-react';
+import { ChevronRight, Cpu, Cpu as Gpu, MemoryStick as Memory, HardDrive, Power, Box, Check, Star, Zap } from 'lucide-react';
 
 const prebuiltPCs = {
   'gaming-starter': {
