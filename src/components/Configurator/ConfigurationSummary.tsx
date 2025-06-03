@@ -40,19 +40,20 @@ const ConfigurationSummary = ({
       <div className="space-y-4">
         {Object.entries(selectedComponents).map(([key, value]) => {
           if (key === 'services') {
-            return value.length > 0 ? (
+            const servicesArray = Array.isArray(value) ? value : [];
+            return servicesArray.length > 0 ? (
               <div key={key} className="flex justify-between items-center p-3 bg-gaming-gray rounded-lg">
                 <div>
                   <span className="text-white font-medium">Services sélectionnés</span>
                   <div className="text-sm text-gray-400">
-                    {value.map(serviceId => {
+                    {servicesArray.map(serviceId => {
                       const service = components.services.find(s => s.id === serviceId);
                       return service ? service.name : '';
                     }).join(', ')}
                   </div>
                 </div>
                 <span className="text-gaming-cyan font-bold">
-                  {value.reduce((total, serviceId) => {
+                  {servicesArray.reduce((total, serviceId) => {
                     const service = components.services.find(s => s.id === serviceId);
                     return total + (service ? service.price : 0);
                   }, 0)}€

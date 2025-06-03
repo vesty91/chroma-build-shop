@@ -9,9 +9,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { 
   ChevronRight, 
   Cpu, 
-  Gpu, 
-  Memory, 
+  Monitor, 
   HardDrive, 
+  HardDrive as Memory,
   Power, 
   Box, 
   Check,
@@ -280,8 +280,8 @@ const PrebuiltPCDetail = () => {
                 <Card className="gaming-card">
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-4">
-                      <Gpu className="h-6 w-6 text-gaming-purple" />
-                      <h3 className="text-lg font-semibold text-white">Carte Graphique</h3>
+                      <Monitor className="h-6 w-6 text-gaming-purple" />
+                      <h3 className="text-lg font-semibold text-white">Moniteur</h3>
                     </div>
                     <div className="space-y-2">
                       <p className="text-white">{pc.specs.gpu.name}</p>
