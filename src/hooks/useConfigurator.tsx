@@ -15,6 +15,13 @@ export const useConfigurator = () => {
     services: []
   });
 
+  const [advancedFilters, setAdvancedFilters] = useState({
+    budget: [0, 1000],
+    usage: [],
+    performance: 'all',
+    brand: 'all'
+  });
+
   const steps = [
     { name: 'CPU', key: 'cpu' },
     { name: 'Carte Mère', key: 'motherboard' },
@@ -122,22 +129,57 @@ export const useConfigurator = () => {
   const getFilteredComponents = (type) => {
     let filteredComponents = components[type] || [];
     
+    // Budget filter
+    if (advancedFilters.budget[0] > 0 || advancedFilters.budget[1] < 1000) {
+      filteredComponents = filteredComponents.filter(component => 
+        component.price >= advancedFilters.budget[0] && 
+        component.price <= advancedFilters.budget[1]
+      );
+    }
+
+    // Usage filter
+    if (advancedFilters.usage.length > 0 && (type === 'cpu' || type === 'gpu')) {
+      filteredComponents = filteredComponents.filter(component => 
+        component.usage?.some(usage => advancedFilters.usage.includes(usage))
+      );
+    }
+
+    // Performance filter
+    if (advancedFilters.performance !== 'all') {
+      if (type === 'gpu') {
+        filteredComponents = filteredComponents.filter(component => 
+          component.performance === advancedFilters.performance
+        );
+      }
+    }
+
+    // Brand filter
+    if (advancedFilters.brand !== 'all') {
+      filteredComponents = filteredComponents.filter(component => 
+        component.brand?.toLowerCase() === advancedFilters.brand.toLowerCase()
+      );
+    }
+
+    // Legacy CPU filter
     if (type === 'cpu' && cpuFilter !== 'all') {
       filteredComponents = filteredComponents.filter(cpu => 
         cpu.brand.toLowerCase() === cpuFilter.toLowerCase()
       );
     }
     
+    // Compatibility filters
     if (type === 'motherboard' && selectedComponents.cpu) {
       const cpu = components.cpu.find(c => c.id === selectedComponents.cpu);
       return filteredComponents.filter(mb => mb.socket === cpu.socket);
     }
+    
     if (type === 'psu' && selectedComponents.gpu) {
       const gpu = components.gpu.find(g => g.id === selectedComponents.gpu);
       const cpu = selectedComponents.cpu ? components.cpu.find(c => c.id === selectedComponents.cpu) : null;
       const minWattage = (cpu?.power || 65) + gpu.power + 150;
       return filteredComponents.filter(psu => psu.wattage >= minWattage);
     }
+    
     return filteredComponents;
   };
 
@@ -175,6 +217,43 @@ export const useConfigurator = () => {
     }
   };
 
+  const skipToSummary = () => {
+    setCurrentStep(steps.length - 1);
+  };
+
+  const resetConfiguration = () => {
+    setSelectedComponents({
+      cpu: null,
+      motherboard: null,
+      ram: null,
+      storage: null,
+      gpu: null,
+      psu: null,
+      case: null,
+      services: []
+    });
+    setCurrentStep(0);
+    setAdvancedFilters({
+      budget: [0, 1000],
+      usage: [],
+      performance: 'all',
+      brand: 'all'
+    });
+  };
+
+  const clearFilters = () => {
+    setAdvancedFilters({
+      budget: [0, 1000],
+      usage: [],
+      performance: 'all',
+      brand: 'all'
+    });
+  };
+
+  const hasSelectedComponents = Object.values(selectedComponents).some(value => 
+    Array.isArray(value) ? value.length > 0 : value !== null
+  );
+
   return {
     currentStep,
     setCurrentStep,
@@ -182,6 +261,8 @@ export const useConfigurator = () => {
     setCpuFilter,
     selectedComponents,
     setSelectedComponents,
+    advancedFilters,
+    setAdvancedFilters,
     steps,
     components,
     calculateTotalPrice,
@@ -189,6 +270,10 @@ export const useConfigurator = () => {
     getFilteredComponents,
     selectComponent,
     nextStep,
-    prevStep
+    prevStep,
+    skipToSummary,
+    resetConfiguration,
+    clearFilters,
+    hasSelectedComponents
   };
 };
