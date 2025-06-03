@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { ChevronRight, ChevronLeft, AlertTriangle, CheckCircle } from 'lucide-react';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import RecommendationEngine from './RecommendationEngine';
 
 const ConfiguratorSection = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -232,7 +233,7 @@ const ConfiguratorSection = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 space-y-6">
               <Card className="gaming-card">
                 <CardHeader>
                   <CardTitle className="text-2xl text-white flex items-center">
@@ -435,6 +436,16 @@ const ConfiguratorSection = () => {
                   )}
                 </CardContent>
               </Card>
+
+              {/* Recommandations Engine */}
+              {currentStepKey !== 'summary' && (
+                <RecommendationEngine
+                  selectedComponents={selectedComponents}
+                  components={components}
+                  currentStep={currentStepKey}
+                  onSelectComponent={selectComponent}
+                />
+              )}
             </div>
 
             {/* Sidebar */}
