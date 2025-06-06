@@ -1,6 +1,13 @@
 
 import { useState } from 'react';
 
+interface AdvancedFilters {
+  budget: [number, number];
+  usage: string[];
+  performance: string;
+  brand: string;
+}
+
 export const useConfigurator = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [cpuFilter, setCpuFilter] = useState('all');
@@ -15,7 +22,7 @@ export const useConfigurator = () => {
     services: []
   });
 
-  const [advancedFilters, setAdvancedFilters] = useState({
+  const [advancedFilters, setAdvancedFilters] = useState<AdvancedFilters>({
     budget: [0, 1000],
     usage: [],
     performance: 'all',

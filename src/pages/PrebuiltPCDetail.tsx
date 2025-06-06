@@ -281,7 +281,7 @@ const PrebuiltPCDetail = () => {
                   <CardContent className="p-6">
                     <div className="flex items-center gap-3 mb-4">
                       <Monitor className="h-6 w-6 text-gaming-purple" />
-                      <h3 className="text-lg font-semibold text-white">Moniteur</h3>
+                      <h3 className="text-lg font-semibold text-white">Carte Graphique</h3>
                     </div>
                     <div className="space-y-2">
                       <p className="text-white">{pc.specs.gpu.name}</p>
