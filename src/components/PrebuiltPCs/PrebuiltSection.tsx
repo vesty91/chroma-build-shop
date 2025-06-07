@@ -17,10 +17,14 @@ const PrebuiltSection = () => {
       originalPrice: 899,
       image: "/placeholder.svg",
       specs: {
-        cpu: "AMD Ryzen 5 5600",
-        gpu: "RTX 4060",
-        ram: "16GB DDR4",
-        storage: "500GB SSD NVMe"
+        cpu: "Intel Core i5-14400F",
+        gpu: "RTX 4060 8GB",
+        ram: "16GB DDR4 3200",
+        storage: "1TB SSD NVMe Kingston",
+        case: "D by M.RED Silent Force",
+        motherboard: "MSI PRO B760M-P DDR4",
+        psu: "D by M.RED ATX 550W 80+ Bronze",
+        cooling: "M.RED Zephyr Dark Pro"
       },
       performance: {
         fps1080p: "120+ FPS",
@@ -275,7 +279,7 @@ const PrebuiltSection = () => {
           ))}
         </div>
 
-        {filteredPCs.length ===   0 && (
+        {filteredPCs.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-400 text-lg">Aucun PC ne correspond à vos critères.</p>
           </div>

@@ -16,7 +16,8 @@ import {
   Box, 
   Check,
   Star,
-  Zap
+  Zap,
+  Fan
 } from 'lucide-react';
 
 const prebuiltPCs = {
@@ -27,35 +28,39 @@ const prebuiltPCs = {
     originalPrice: 899,
     image: "/placeholder.svg",
     badge: "POPULAIRE",
-    description: "Configuration d'entrée de gamme idéale pour le gaming en Full HD",
+    description: "Configuration d'entrée de gamme idéale pour le gaming en Full HD avec processeur Intel dernière génération",
     specs: {
       cpu: {
-        name: "AMD Ryzen 5 5600",
-        details: "6 cœurs / 12 threads, 3.7 GHz - 4.6 GHz"
+        name: "Intel Core i5-14400F",
+        details: "10 cœurs / 16 threads, jusqu'à 4.7 GHz, LGA1700"
       },
       gpu: {
-        name: "RTX 4060",
-        details: "8 Go GDDR6, Ray Tracing, DLSS 3"
+        name: "RTX 4060 8GB",
+        details: "8 Go GDDR6, Ray Tracing, DLSS 3 (ASUS/MSI/Gigabyte)"
       },
       ram: {
-        name: "16GB DDR4",
-        details: "2x8 Go, 3200 MHz, CL16"
+        name: "16GB DDR4 3200",
+        details: "Corsair CM4X8GD3200C16K2E (2x8Go DDR4 3200 PC24000)"
       },
       storage: {
-        name: "500GB SSD NVMe",
-        details: "PCIe 4.0, 3500 Mo/s"
+        name: "1TB SSD NVMe Kingston",
+        details: "Kingston NV2 M.2 NVMe - SNV2S/1000G"
       },
       motherboard: {
-        name: "MSI B550M PRO",
-        details: "AMD B550, PCIe 4.0, USB 3.2"
+        name: "MSI PRO B760M-P DDR4",
+        details: "Intel B760, LGA1700, DDR4, mATX"
       },
       psu: {
-        name: "Corsair 650W",
-        details: "80+ Bronze, Semi-modulaire"
+        name: "D by M.RED ATX 550W",
+        details: "80+ Bronze - DU-550B"
       },
       case: {
-        name: "NZXT H510",
-        details: "ATX, USB 3.1 Type-C"
+        name: "D by M.RED Silent Force",
+        details: "Boîtier PC silencieux et performant"
+      },
+      cooling: {
+        name: "M.RED Zephyr Dark Pro",
+        details: "Ventilateur CPU optimisé pour Intel LGA1700"
       }
     },
     performance: {
@@ -69,7 +74,7 @@ const prebuiltPCs = {
     features: [
       "Ray Tracing Ready",
       "Montage soigné",
-      "Windows 11 Préinstallé",
+      "Sans système d'exploitation",
       "Garantie 2 ans"
     ],
     images: [
@@ -338,6 +343,32 @@ const PrebuiltPCDetail = () => {
                     <div className="space-y-2">
                       <p className="text-white">{pc.specs.psu.name}</p>
                       <p className="text-gray-400">{pc.specs.psu.details}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="gaming-card">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Box className="h-6 w-6 text-gaming-green" />
+                      <h3 className="text-lg font-semibold text-white">Boîtier</h3>
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-white">{pc.specs.case.name}</p>
+                      <p className="text-gray-400">{pc.specs.case.details}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="gaming-card">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Fan className="h-6 w-6 text-gaming-cyan" />
+                      <h3 className="text-lg font-semibold text-white">Refroidissement</h3>
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-white">{pc.specs.cooling.name}</p>
+                      <p className="text-gray-400">{pc.specs.cooling.details}</p>
                     </div>
                   </CardContent>
                 </Card>
