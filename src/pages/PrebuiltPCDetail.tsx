@@ -24,7 +24,7 @@ const prebuiltPCs = {
   'gaming-starter': {
     id: 1,
     name: "Gaming Starter",
-    price: 799,
+    price: 940,
     originalPrice: 899,
     image: "/placeholder.svg",
     badge: "POPULAIRE",

@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,7 +14,7 @@ const PrebuiltSection = () => {
     {
       id: 'gaming-starter',
       name: "Gaming Starter",
-      price: 799,
+      price: 940,
       originalPrice: 899,
       image: "/placeholder.svg",
       specs: {
