@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,7 +21,7 @@ const PrebuiltSection = () => {
         gpu: "RTX 4060 8GB",
         ram: "16GB DDR4 3200",
         storage: "1TB SSD NVMe Kingston",
-        case: "D by M.RED Silent Force",
+        case: "MUSETEX Boitier PC ATX, 3 Ventilateurs",
         motherboard: "MSI PRO B760M-P DDR4",
         psu: "D by M.RED ATX 550W 80+ Bronze",
         cooling: "M.RED Zephyr Dark Pro"

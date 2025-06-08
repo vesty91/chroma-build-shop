@@ -55,8 +55,8 @@ const prebuiltPCs = {
         details: "80+ Bronze - DU-550B"
       },
       case: {
-        name: "D by M.RED Silent Force",
-        details: "Boîtier PC silencieux et performant"
+        name: "MUSETEX Boitier PC ATX, 3 Ventilateurs",
+        details: "Boîtier ATX avec ventilation optimisée"
       },
       cooling: {
         name: "M.RED Zephyr Dark Pro",
